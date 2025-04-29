@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWMG | Our Music</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --accent: #fd79a8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        nav {
+            background-color: rgba(0,0,0,0.3);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0.5rem auto;
+        }
+        
+        .featured-album {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .album-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .track:hover {
+            transform: translateY(-5px);
+        }
+        
+        .track-art {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .track-info {
+            padding: 1.5rem;
+        }
+        
+        .track-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .track-artist {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .play-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .play-btn:hover {
+            background: var(--accent);
+        }
+        
+        /* Commented out shows section styles
+        .shows-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .show {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .show-date {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .show-location {
+            opacity: 0.8;
+        }
+        
+        .buy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .buy-btn:hover {
+            background: var(--accent);
+        }
+        */
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            color: white;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: var(--accent);
+        }
+        
+        footer {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .show {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>SWMG</h1>
+            <p class="tagline">Casting Spells</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#music">Music</a></li>
+            <!-- <li><a href="#shows">Shows</a></li> -->
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="music">
+        <h2>Our Music</h2>
+        
+        <div class="featured-album">
+            <h3 class="album-title">Oxycaution - BY ANY MEANS NECESSARY</h3>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/541301964%3Fsecret_token%3Ds-GWzqz&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                <a href="https://soundcloud.com/oxycaution" title="oxycaution" target="_blank" style="color: #cccccc; text-decoration: none;">oxycaution</a> · 
+                <a href="https://soundcloud.com/oxycaution/sets/hexestibah/s-GWzqz" title="BY ANY MEANS NECESSARY" target="_blank" style="color: #cccccc; text-decoration: none;">BY ANY MEANS NECESSARY</a>
+            </div>
+        </div>
+        
+        <div class="featured-album">
+            <h3 class="album-title">Sploof & Oxy - EP</h3>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/776741103%3Fsecret_token%3Ds-h5zTF&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                <a href="https://soundcloud.com/oxycaution" title="oxycaution" target="_blank" style="color: #cccccc; text-decoration: none;">oxycaution</a> · 
+                <a href="https://soundcloud.com/oxycaution/sets/sploof-oxy-ep/s-h5zTF" title="SPLOOF & OXY EP" target="_blank" style="color: #cccccc; text-decoration: none;">SPLOOF & OXY EP</a>
+            </div>
+        </div>
+        
+        <div class="featured-album">
+            <h3 class="album-title">OXYCAUTION - CHOPPA TALK</h3>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/780216855%3Fsecret_token%3Ds-RhHIg&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                <a href="https://soundcloud.com/oxycaution" title="oxycaution" target="_blank" style="color: #cccccc; text-decoration: none;">oxycaution</a> · 
+                <a href="https://soundcloud.com/oxycaution/sets/choppa-talk/s-RhHIg" title="CHOPPA TALK 🗣" target="_blank" style="color: #cccccc; text-decoration: none;">CHOPPA TALK 🗣</a>
+            </div>
+        </div>
+        
+        <!-- Commented out placeholder tracks
+        <div class="music-grid">
+            <div class="track">
+                <img src="https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Album Cover" class="track-art">
+                <div class="track-info">
+                    <h3 class="track-title">Track Title 1</h3>
+                    <p class="track-artist">Artist Name</p>
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <span>3:42</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="track">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Album Cover" class="track-art">
+                <div class="track-info">
+                    <h3 class="track-title">Track Title 2</h3>
+                    <p class="track-artist">Artist Name</p>
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <span>4:15</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="track">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Album Cover" class="track-art">
+                <div class="track-info">
+                    <h3 class="track-title">Track Title 3</h3>
+                    <p class="track-artist">Artist Name</p>
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <span>5:22</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+    </section>
+    
+    <!-- Commented out shows section
+    <section id="shows">
+        <h2>Upcoming Shows</h2>
+        <div class="shows-list">
+            <div class="show">
+                <div>
+                    <div class="show-date">June 15, 2023</div>
+                    <div class="show-location">The Venue, City</div>
+                </div>
+                <button class="buy-btn">Get Tickets</button>
+            </div>
+            
+            <div class="show">
+                <div>
+                    <div class="show-date">July 3, 2023</div>
+                    <div class="show-location">Club Name, Another City</div>
+                </div>
+                <button class="buy-btn">Get Tickets</button>
+            </div>
+            
+            <div class="show">
+                <div>
+                    <div class="show-date">August 20, 2023</div>
+                    <div class="show-location">Festival Name, Big City</div>
+                </div>
+                <button class="buy-btn">Get Tickets</button>
+            </div>
+        </div>
+    </section>
+    -->
+    
+    <section id="about">
+        <h2>About SWMG</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+            This music shit a hobby bro we do everything. 
+            Shits easy.
+        </p>
+    </section>
+    
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+    
+    <!--<footer>
+        <div class="social-links">
+            <a href="#" aria-label="SoundCloud">SC</a>
+            <a href="#" aria-label="Bandcamp">BC</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Twitter">TW</a>
+            <a href="#" aria-label="Spotify">SP</a>
+        </div>
+        <p>&copy; 2023 SWMG. All rights reserved.</p>
+    </footer>
+	-->
+</body>
+</html>
